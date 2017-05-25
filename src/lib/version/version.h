@@ -107,6 +107,10 @@
 #define HW_ARCH "AEROFC_V1"
 #endif
 
+#ifdef CONFIG_ARCH_BOARD_F4BY
+#define HW_ARCH "F4BY"
+#endif
+
 #ifdef CONFIG_ARCH_BOARD_F4BY_MINI
 #define HW_ARCH "F4BY_MINI"
 #endif

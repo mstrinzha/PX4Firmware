@@ -129,6 +129,10 @@
 # define PX4FMU_DEVICE_PATH	"/dev/px4fmu"
 #endif
 
+#ifdef CONFIG_ARCH_BOARD_F4BY
+# define PX4FMU_DEVICE_PATH	"/dev/px4fmu"
+#endif
+
 #ifdef CONFIG_ARCH_BOARD_F4BY_MINI
 # define PX4FMU_DEVICE_PATH	"/dev/px4fmu"
 #endif
@@ -175,6 +179,7 @@
 	!defined(CONFIG_ARCH_BOARD_VRCORE_V10) && \
 	!defined(CONFIG_ARCH_BOARD_VRUBRAIN_V51) && !defined(CONFIG_ARCH_BOARD_VRUBRAIN_V52) && \
 	!defined(CONFIG_ARCH_BOARD_AEROFC_V1) &&\
+	!defined(CONFIG_ARCH_BOARD_F4BY) && \
 	!defined(CONFIG_ARCH_BOARD_F4BY_MINI)
 # error No CONFIG_ARCH_BOARD_xxxx set
 #endif
