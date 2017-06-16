@@ -220,10 +220,7 @@ __EXPORT int nsh_archinitialize(void)
 	up_udelay(20);
 
 	/* Get the SPI port for the FRAM */
-	led_on(LED_AMBER);
-	
 	spi2 = up_spiinitialize(2);
-	led_on(LED_BLUE);
 	
 	if (!spi2) {
 		message("[boot] FAILED to initialize SPI port 2\n");
@@ -243,7 +240,6 @@ __EXPORT int nsh_archinitialize(void)
 	SPI_SELECT(spi2, SPIDEV_FLASH, false);
 	SPI_SELECT(spi2, SPIDEV_MMCSD, false);
 
-	led_on(LED_GREEN);
 	mmcsd_spislotinitialize(CONFIG_NSH_MMCSDMINOR, CONFIG_NSH_MMCSDSLOTNO, spi2);
 /*	spi3 = up_spiinitialize(3);
 
@@ -258,6 +254,5 @@ __EXPORT int nsh_archinitialize(void)
 	SPI_SETMODE(spi3, SPIDEV_MODE3);
 	SPI_SELECT(spi3, PX4_SPIDEV_GYRO, false);
 	SPI_SELECT(spi3, PX4_SPIDEV_ACCEL_MAG, false);*/
-	led_on(LED_YELLOW);
 	return OK;
 }

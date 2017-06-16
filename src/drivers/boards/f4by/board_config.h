@@ -221,8 +221,11 @@ __BEGIN_DECLS
  */
 #define HRT_TIMER		8	/* use timer3 for the HRT *///F4BY
 #define HRT_TIMER_CHANNEL	1	/* use capture/compare channel 1 */
-//#define HRT_PPM_CHANNEL		2	/* use capture/compare channel 2 *///F4BY
-//#define GPIO_PPM_IN		(GPIO_ALT|GPIO_AF2|GPIO_SPEED_50MHz|GPIO_PULLUP|GPIO_PORTC|GPIO_PIN7)//F4BY
+#define HRT_PPM_CHANNEL		2	/* use capture/compare channel 2 */
+
+#define GPIO_PPM_IN            GPIO_TIM8_CH2IN_1
+
+#define RC_SERIAL_PORT              "/dev/ttyS5"
 
 #define GPIO_SBUS_INV			(GPIO_OUTPUT|GPIO_PUSHPULL|GPIO_SPEED_2MHz|GPIO_OUTPUT_SET|GPIO_PORTD|GPIO_PIN3)
 #define INVERT_RC_INPUT(_s)		stm32_gpiowrite(GPIO_SBUS_INV, _s);
