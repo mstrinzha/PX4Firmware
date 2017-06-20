@@ -221,9 +221,9 @@ __BEGIN_DECLS
  */
 #define HRT_TIMER		8	/* use timer3 for the HRT *///F4BY
 #define HRT_TIMER_CHANNEL	1	/* use capture/compare channel 1 */
-#define HRT_PPM_CHANNEL		2	/* use capture/compare channel 2 */
+#define HRT_PPM_CHANNEL		4	/* use capture/compare channel 2 */
 
-#define GPIO_PPM_IN            GPIO_TIM8_CH2IN_1
+#define GPIO_PPM_IN            GPIO_TIM8_CH4IN_1
 
 #define RC_SERIAL_PORT              "/dev/ttyS5"
 
