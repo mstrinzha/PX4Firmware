@@ -145,20 +145,39 @@ __EXPORT uint8_t stm32_spi3status(FAR struct spi_dev_s *dev, enum spi_dev_e devi
 __EXPORT void stm32_spi2select(FAR struct spi_dev_s *dev, enum spi_dev_e devid, bool selected)//f4by
 {
 	/* there can only be one device on this bus, so always select it */
-	switch(devid)
-	{
-	case SPIDEV_FLASH:
-		stm32_gpiowrite(GPIO_SPI_CS_FLASH, !selected);
-		stm32_gpiowrite(GPIO_SPI_CS_SDCARD, 1);
-		break;
-	case SPIDEV_MMCSD:		
-		stm32_gpiowrite(GPIO_SPI_CS_SDCARD, !selected);
-		stm32_gpiowrite(GPIO_SPI_CS_FLASH, 1);
-		break;
+	if (selected)
+	{	
+		switch(devid)
+		{
+		case SPIDEV_FLASH:
+			stm32_gpiowrite(GPIO_SPI_CS_SDCARD, 1);	// deselect before select
+			stm32_gpiowrite(GPIO_SPI_CS_FLASH,  0);
+			break;
+		case SPIDEV_MMCSD:
+			stm32_gpiowrite(GPIO_SPI_CS_FLASH, 1);		// deselect before select
+			stm32_gpiowrite(GPIO_SPI_CS_SDCARD, 0);
 
-		default:
-		break;
-	}
+			break;
+
+			default:
+			break;
+		}
+	}	
+	else  // deselect
+	{
+			switch(devid)
+		{
+		case SPIDEV_FLASH:
+			stm32_gpiowrite(GPIO_SPI_CS_FLASH,  1); //only deselect target device, do not change another
+			break;
+		case SPIDEV_MMCSD:
+			stm32_gpiowrite(GPIO_SPI_CS_SDCARD, 1);
+			break;
+
+			default:
+			break;
+		}
+	}	
 }
 
 __EXPORT uint8_t stm32_spi2status(FAR struct spi_dev_s *dev, enum spi_dev_e devid)//f4by
